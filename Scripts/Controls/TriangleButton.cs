@@ -5,8 +5,42 @@ using UnityEngine;
 public class TriangleButton : MonoBehaviour
 {
 
-    public void ButtonClick(){
-        Debug.Log("TriangleButton Script executed!");
+    bool IsRunning;
+    bool StopRunning;
+    public void pointerDown()
+    {
+        StopRunning = false;
+        Invoke("RunVariableTrue", 0.5f);
     }
     
+    public void pointerUp()
+    {
+        IsRunning = false;
+        StopRunning = true;
+    }
+
+    void RunVariableTrue()
+    {
+        IsRunning = true;
+    }
+
+    void RunVariableFalse()
+    {
+        IsRunning = false;
+        if (StopRunning == false)
+        {
+            Speed = 1;
+            Invoke("RunVariableTrue", 0.5f);
+        }
+    }
+
+    void Update ()
+    {
+        if(IsRunning)
+        {
+            RunVariableFalse();
+            Speed = 10;
+            Debug.Log("Running!");
+        }
+    }
 }
