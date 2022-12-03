@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TriangleButton : MonoBehaviour
 {
-
     bool IsRunning;
     bool StopRunning;
+
     public void pointerDown()
     {
         StopRunning = false;
@@ -29,7 +29,6 @@ public class TriangleButton : MonoBehaviour
         IsRunning = false;
         if (StopRunning == false)
         {
-            Speed = 1;
             Invoke("RunVariableTrue", 0.5f);
         }
     }
@@ -39,8 +38,7 @@ public class TriangleButton : MonoBehaviour
         if(IsRunning)
         {
             RunVariableFalse();
-            Speed = 10;
-            Debug.Log("Running!");
+            Debug.Log("The player is now running!");
         }
     }
 }

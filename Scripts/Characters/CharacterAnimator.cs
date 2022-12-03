@@ -19,6 +19,11 @@ public class CharacterAnimator : MonoBehaviour
     public float MoveY { get; set; }
     public bool isMoving { get; set; }
 
+    public bool IsRunning {
+        get;
+        set;
+    }
+
     //states
     SpriteAnimator walkDownAnim;
     SpriteAnimator walkUpAnim;
@@ -89,9 +94,5 @@ public class CharacterAnimator : MonoBehaviour
         wasPreviouslyMoving = isMoving;
     }
 
-    public bool IsRunning {
-        get;
-        set;
-    }
 
 }
