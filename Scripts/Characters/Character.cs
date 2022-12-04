@@ -9,7 +9,6 @@ public class Character : MonoBehaviour
     public bool isMoving { get; private set; }
 
     CharacterAnimator animator;
-
     private void Awake()
     {
         animator = GetComponent<CharacterAnimator>();

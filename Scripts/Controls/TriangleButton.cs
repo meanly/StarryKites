@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class TriangleButton : MonoBehaviour
 {
+
+    CharacterAnimator characterAnimator;
     bool IsRunning;
     bool StopRunning;
+
+    private void start()
+    {
+        characterAnimator = GetComponent<CharacterAnimator>();
+    }
 
     public void pointerDown()
     {
@@ -29,6 +36,7 @@ public class TriangleButton : MonoBehaviour
         IsRunning = false;
         if (StopRunning == false)
         {
+            
             Invoke("RunVariableTrue", 0.5f);
         }
     }
@@ -38,7 +46,8 @@ public class TriangleButton : MonoBehaviour
         if(IsRunning)
         {
             RunVariableFalse();
-            Debug.Log("The player is now running!");
+            
+            Debug.Log("The player is now running!");  //i need to change the value of the movementspeed and animation in this block
         }
     }
 }

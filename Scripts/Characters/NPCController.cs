@@ -56,7 +56,11 @@ public class NPCController : MonoBehaviour, Interactable
         yield return character.Move(movementPattern[currentPattern]);
 
         if (transform.position != oldPos)
+        {    
             currentPattern = (currentPattern + 1 ) % movementPattern.Count;
+        }
+
+            
         state = NPCState.Idle;
     }
 }

@@ -9,7 +9,7 @@ public class CharacterAnimator : MonoBehaviour
     [SerializeField] List<Sprite> walkRightSprites;
     [SerializeField] List<Sprite> walkLeftSprites;
 
-    [SerializeField] List<Sprite> runDownSprites;
+    [SerializeField] List<Sprite> runDownSprites; //RUNNING ANIMATION
     [SerializeField] List<Sprite> runUpSprites;
     [SerializeField] List<Sprite> runRightSprites;
     [SerializeField] List<Sprite> runLeftSprites;
@@ -19,7 +19,7 @@ public class CharacterAnimator : MonoBehaviour
     public float MoveY { get; set; }
     public bool isMoving { get; set; }
 
-    public bool IsRunning {
+    public bool IsRunning { //RUNNING ANIMATION
         get;
         set;
     }
@@ -30,7 +30,7 @@ public class CharacterAnimator : MonoBehaviour
     SpriteAnimator walkRightAnim;
     SpriteAnimator walkLeftAnim;
 
-    SpriteAnimator runDownAnim;
+    SpriteAnimator runDownAnim; //RUNNING ANIMATION
     SpriteAnimator runUpAnim;
     SpriteAnimator runRightAnim;
     SpriteAnimator runLeftAnim;
@@ -41,7 +41,7 @@ public class CharacterAnimator : MonoBehaviour
     //refrences
     SpriteRenderer spriteRenderer;
 
-    private void Start()
+    private void Start() //initializing the sprites to sprite renderer
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         walkDownAnim = new SpriteAnimator(walkDownSprites, spriteRenderer);
@@ -49,7 +49,7 @@ public class CharacterAnimator : MonoBehaviour
         walkRightAnim = new SpriteAnimator(walkRightSprites, spriteRenderer);
         walkLeftAnim = new SpriteAnimator(walkLeftSprites, spriteRenderer);
 
-        runDownAnim = new SpriteAnimator(runDownSprites, spriteRenderer);
+        runDownAnim = new SpriteAnimator(runDownSprites, spriteRenderer); //RUNNING ANIMATION
         runUpAnim = new SpriteAnimator(runUpSprites, spriteRenderer);
         runRightAnim = new SpriteAnimator(runRightSprites, spriteRenderer);
         runLeftAnim = new SpriteAnimator(runLeftSprites, spriteRenderer);
@@ -60,8 +60,8 @@ public class CharacterAnimator : MonoBehaviour
     private void Update()
     {
         var prevAnim = currentAnim;
-
-            if (IsRunning) { 
+        
+            if (IsRunning) {  //RUNNING ANIMATION
                 if (MoveX == 1)
                     currentAnim = runRightAnim;
                 else if (MoveX == -1)

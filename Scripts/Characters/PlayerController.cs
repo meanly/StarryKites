@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isClicked;
 
+    private bool IsRunning;
+
     private void Awake()
     {
         character = GetComponent<Character>();
@@ -34,6 +36,17 @@ public class PlayerController : MonoBehaviour
         character.HandleUpdate();
         if(isClicked == true)
         interact();
+
+        //reunning
+        
+        CheckIfRunningButtonIsPressed();
+        if(!IsRunning) // Checks if the player isn't running, then he is walking
+        {
+            character.moveSpeed = 5f;
+        } else {
+            character.moveSpeed = 11f;
+            Debug.Log("The player is now running!"); 
+        }
     }
 
     public void interact()
@@ -48,5 +61,21 @@ public class PlayerController : MonoBehaviour
             collider.GetComponent<Interactable>()?.interact(transform);
         }
     }
+
+//////////////////RUNNING
+
+    private void CheckIfRunningButtonIsPressed()
+    {
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            IsRunning = true;
+        }
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            IsRunning = false;
+        }
+        character.Animator.IsRunning = IsRunning;
+    }
+
 
 } //class 

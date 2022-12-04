@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityStandardAssets.CrossPlatformInput;
 
-public class XButton: MonoBehaviour
+public class XButton : MonoBehaviour
 {
 	PlayerController playercontrollerscript;
 	DialogueManager dialoguemanagerscript;

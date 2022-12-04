@@ -7,13 +7,4 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CircleButton : MonoBehaviour
 {
 
-	PlayerController playercontrollerscript;
-	DialogueManager dialoguemanagerscript;
-
-    public void ButtonClick(){
-
-		playercontrollerscript = FindObjectOfType<PlayerController>();
-		playercontrollerscript.isClicked = true;
-		playercontrollerscript.interact();
-    }
 }
