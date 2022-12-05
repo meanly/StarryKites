@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-//////////////////RUNNING
+//////////////////RUNNING EXECUTION
 
     private void CheckIfRunningButtonIsPressed()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriangleButton : MonoBehaviour
 {
 
+/////PENDING WORK: IMPLEMENTING THIS BUTTON FOR RUNNING
     CharacterAnimator characterAnimator;
     bool IsRunning;
     bool StopRunning;
