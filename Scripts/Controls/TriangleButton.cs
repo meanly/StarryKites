@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class TriangleButton: MonoBehaviour {
 
-  /////PENDING WORK: IMPLEMENTING THIS BUTTON FOR RUNNING
-  CharacterAnimator characterAnimator;
+  /////I DONT USE THIS SCRIPT ANYMORE (TRIANGLE BUTTON IS IN THE PLAYERCONTROLLER.)
+    /////
+      /////
+        /////
+          ///// MIGHT BE USEFUL SOMEDAY.
+  private Character character;
+  private PlayerController playerController;
   bool IsRunning;
   bool StopRunning;
 
   private void start() {
-    characterAnimator = GetComponent < CharacterAnimator > ();
+    character = GetComponent<Character>();
+    playerController = GetComponent<PlayerController>();
   }
 
   public void pointerDown() {
@@ -21,6 +27,8 @@ public class TriangleButton: MonoBehaviour {
   public void pointerUp() {
     IsRunning = false;
     StopRunning = true;
+    playerController.IsRunning = false;
+    character.Animator.IsRunning = false;
   }
 
   void RunVariableTrue() {
@@ -37,8 +45,9 @@ public class TriangleButton: MonoBehaviour {
   void Update() {
     if (IsRunning) {
       RunVariableFalse();
-
-      Debug.Log("The player is now running!"); //i need to change the value of the movementspeed and animation in this block
+      playerController.IsRunning = true;
+      character.Animator.IsRunning = true;
+      Debug.Log("The player is now running!"); 
     }
   }
 }

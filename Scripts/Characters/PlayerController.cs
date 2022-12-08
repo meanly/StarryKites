@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isClicked;
 
-    private bool IsRunning;
+    public bool IsRunning;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         if(isClicked == true)
         interact();
 
-        //reunning
+        //running
         
         CheckIfRunningButtonIsPressed();
         if(!IsRunning) // Checks if the player isn't running, then he is walking
@@ -77,5 +77,14 @@ public class PlayerController : MonoBehaviour
         character.Animator.IsRunning = IsRunning;
     }
 
+    public void pointerDown(){
+        IsRunning = true;
+        character.Animator.IsRunning = true;
+    }
+
+    public void pointerUp() {
+        IsRunning = false;
+        character.Animator.IsRunning = false;
+    }
 
 } //class 
