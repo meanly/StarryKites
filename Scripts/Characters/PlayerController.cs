@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!character.isMoving)
         {
-            input.x = CrossPlatformInputManager.GetAxis("Horizontal");
-            input.y = CrossPlatformInputManager.GetAxis("Vertical");
+            //for pc controls WASD
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
 
             //remove diagonal
             if (input.x != 0) input.y = 0;
@@ -32,10 +33,30 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(character.Move(input));
             }
+        } 
+        if (!character.isMoving)
+        {
+            //for mobile touchpad
+            input.x = CrossPlatformInputManager.GetAxis("Horizontal");
+            input.y = CrossPlatformInputManager.GetAxis("Vertical");
+            
+            //remove diagonal
+            if (input.x != 0) input.y = 0;
+
+            if (input != Vector2.zero)
+            {
+                StartCoroutine(character.Move(input));
+            }
         }
+
         character.HandleUpdate();
         if(isClicked == true)
         interact();
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            interact();
+        }
 
         //running
         
@@ -64,6 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveOver()
     {
+        CheckIfInTrainersView();
        //var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
 
        //foreach (var collider in colliders)
@@ -76,15 +98,23 @@ public class PlayerController : MonoBehaviour
             //}
        //}
     }
+
+    private void CheckIfInTrainersView()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer) != null)
+        {
+            Debug.Log("In trainer's view");
+        }
+    }
 //////////////////RUNNING EXECUTION
 
     private void CheckIfRunningButtonIsPressed()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.F))
         {
             IsRunning = true;
         }
-        if(Input.GetKeyUp(KeyCode.A))
+        if(Input.GetKeyUp(KeyCode.F))
         {
             IsRunning = false;
         }
