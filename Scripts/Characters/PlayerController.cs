@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input));
+                StartCoroutine(character.Move(input, OnMoveOver));
             }
         } 
         if (!character.isMoving)
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input, OnMoveOver)); //ERRORS FOR IMPLEMENTING CHANGE SCENE AND TRAINERS (WILL CHECK THIS BACK)
+                StartCoroutine(character.Move(input, OnMoveOver));
             }
         }
 
