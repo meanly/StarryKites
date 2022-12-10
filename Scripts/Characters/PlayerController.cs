@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input));
+                StartCoroutine(character.Move(input, OnMoveOver)); //ERRORS FOR IMPLEMENTING CHANGE SCENE AND TRAINERS (WILL CHECK THIS BACK)
             }
         }
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if(isClicked == true)
         interact();
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z)) //does nt work atm
         {
             interact();
         }
