@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input, OnMoveOver));
+                StartCoroutine(character.Move(input));
             }
         }
         character.HandleUpdate();
@@ -64,17 +64,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveOver()
     {
-       var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
+       //var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
 
-       foreach (var collider in colliders)
-       {
-            var triggerable = collider.GetComponent<IPlayerTriggerable>();
-            if (triggerable != null)
-            {
-                triggerable.OnPlayerTriggered(this);
-                break;
-            }
-       }
+       //foreach (var collider in colliders)
+       //{
+            //var triggerable = collider.GetComponent<IPlayerTriggerable>();
+            //if (triggerable != null)
+            //{
+                //triggerable.OnPlayerTriggered(this);
+                //break;
+            //}
+       //}
     }
 //////////////////RUNNING EXECUTION
 
