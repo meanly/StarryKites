@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -15,7 +16,7 @@ public class Character : MonoBehaviour
     }
 
 
-    public IEnumerator Move(Vector2 moveVec)
+    public IEnumerator Move(Vector2 moveVec, Action OnMoveOver=null)
     {
         animator.MoveX = Mathf.Clamp(moveVec.x, -1f, 1f);
         animator.MoveY = Mathf.Clamp(moveVec.y, -1f, 1f);
@@ -25,8 +26,10 @@ public class Character : MonoBehaviour
         targetPos.y += moveVec.y;
         
         if (!IsPathClear(targetPos))
-        yield break;
-        
+        {
+            yield break;
+        }
+
         isMoving = true;
 
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
@@ -37,6 +40,8 @@ public class Character : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+
+        OnMoveOver?.Invoke();
     }
     public void HandleUpdate()
     {

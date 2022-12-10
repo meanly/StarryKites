@@ -6,6 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour
 {
 
+    const float offsetY = 0.3f;
     private Vector2 input;
     private Character character;
 
@@ -85,18 +86,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveOver()
     {
-        CheckIfInTrainersView();
-       //var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
+       CheckIfInTrainersView();
+       var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
 
-       //foreach (var collider in colliders)
-       //{
-            //var triggerable = collider.GetComponent<IPlayerTriggerable>();
-            //if (triggerable != null)
-            //{
-                //triggerable.OnPlayerTriggered(this);
-                //break;
-            //}
-       //}
+       foreach (var collider in colliders)
+       {
+            var triggerable = collider.GetComponent<IPlayerTriggerable>();
+            if (triggerable != null)
+            {
+                triggerable.OnPlayerTriggered(this);
+                break;
+            }
+       }
     }
 
     private void CheckIfInTrainersView()
