@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,21 +9,18 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
 
+
+    TrainerController trainer;
     GameState state;
+
+    public static GameController Instance { get; private set; }
+
+    private void Awake() {
+        Instance = this;
+    }
 
     public void Start()
     {
-
-        playerController.OnEnterTrainersView += (Collider2D trainerCollider) =>
-        {
-           var trainer = trainerCollider.GetComponentInParent<TrainerController>();
-           if (trainer != null)
-           {
-               state = GameState.Cutscene;
-               StartCoroutine(trainer.TriggerTrainerBattle(playerController));
-           }
-
-        };
 
         DialogueManager.Instance.OnShowDialogue += () =>
         {
@@ -46,5 +44,12 @@ public class GameController : MonoBehaviour
         {
             DialogueManager.Instance.HandleUpdate();
         }
+    }
+
+    public void OnEnterTrainersView(TrainerController trainer)
+    {
+        Debug.Log("test");
+        state = GameState.Cutscene;
+        StartCoroutine(trainer.TriggerTrainer(playerController));
     }
 }

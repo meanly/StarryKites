@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
 {
-    public event Action<Collider2D> OnEnterTrainersView;
 
     const float offsetY = 0.3f;
     private Vector2 input;
@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveOver()
     {
-       CheckIfInTrainersView();
        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
 
        foreach (var collider in colliders)
@@ -95,21 +94,13 @@ public class PlayerController : MonoBehaviour
             var triggerable = collider.GetComponent<IPlayerTriggerable>();
             if (triggerable != null)
             {
+                character.Animator.isMoving = false;
                 triggerable.OnPlayerTriggered(this);
                 break;
             }
        }
     }
 
-    private void CheckIfInTrainersView()
-    {
-        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer);
-        if (collider != null)
-        {
-            character.Animator.isMoving = false;
-            OnEnterTrainersView?.Invoke(collider);
-        }
-    }
 //////////////////RUNNING EXECUTION
 
     private void CheckIfRunningButtonIsPressed()

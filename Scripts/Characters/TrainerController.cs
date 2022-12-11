@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using static CharacterAnimator;
 
 public class TrainerController : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class TrainerController : MonoBehaviour
     Character character;
 
     private void Awake() {
-        character = GameComponent<Character>();
+        character = GetComponent<Character>();
     }
 
     private void Start() {
@@ -33,7 +33,7 @@ public class TrainerController : MonoBehaviour
         yield return character.Move(moveVec);
 
         //show the dialogue
-        StartCoroutine(DialogueManager.instance.ShowDialogue(dialogue, () => 
+        StartCoroutine(DialogueManager.Instance.ShowDialogue(dialogue, () => 
         {
             Debug.Log("Starting Trainer.");
         }));
