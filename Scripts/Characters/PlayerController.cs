@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action<Collider2D> OnEnterTrainersView;
 
     const float offsetY = 0.3f;
     private Vector2 input;
@@ -102,9 +103,11 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfInTrainersView()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer) != null)
+        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer);
+        if (collider != null)
         {
-            Debug.Log("In trainer's view");
+
+            OnEnterTrainersView?.Invoke(collider);
         }
     }
 //////////////////RUNNING EXECUTION

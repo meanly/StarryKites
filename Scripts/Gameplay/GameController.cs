@@ -12,6 +12,17 @@ public class GameController : MonoBehaviour
 
     public void Start()
     {
+
+        playerController.OnEnterTrainersView += (Collider2D trainerCollider) =>
+        {
+           var trainer = trainerCollider.GetComponentInParent<TrainerController>();
+           if (trainer != null)
+           {
+               StartCoroutine(trainer.TriggerTrainerBattle(playerController));
+           }
+
+        };
+
         DialogueManager.Instance.OnShowDialogue += () =>
         {
             state = GameState.Dialogue;
