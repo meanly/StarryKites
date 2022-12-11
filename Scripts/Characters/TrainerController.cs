@@ -7,10 +7,15 @@ public class TrainerController : MonoBehaviour
 {
     [SerializeField] Dialogue dialogue;
     [SerializeField] GameObject exclamation;
+    [SerializeField] GameObject fov;
     Character character;
 
     private void Awake() {
         character = GameComponent<Character>();
+    }
+
+    private void Start() {
+        SetFovRotation(character.Animator.DefaultDirection);
     }
 
     public IEnumerator TriggerTrainer(PlayerController player) //TriggerTrainerBattle
@@ -32,7 +37,18 @@ public class TrainerController : MonoBehaviour
         {
             Debug.Log("Starting Trainer.");
         }));
-        
-    
+    }
+
+    public void SetFovRotation(FacingDirection dir)
+    {
+        float angle = 0f;
+        if (dir == FacingDirection.Right)
+            angle = 90f;
+        else if (dir == FacingDirection.Up)
+            angle = 180f;
+        else if (dir == FacingDirection.Left)
+            angle = 270f; //no f
+
+        fov.transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 }
