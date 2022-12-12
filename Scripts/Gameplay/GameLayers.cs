@@ -41,7 +41,7 @@ public class GameLayers : MonoBehaviour
     }
     
     public LayerMask TriggerableLayers {
-        get => portalLayer;
+        get => portalLayer | fovLayer;
     }
     
 }

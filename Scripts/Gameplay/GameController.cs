@@ -48,7 +48,6 @@ public class GameController : MonoBehaviour
 
     public void OnEnterTrainersView(TrainerController trainer)
     {
-        Debug.Log("test");
         state = GameState.Cutscene;
         StartCoroutine(trainer.TriggerTrainer(playerController));
     }
