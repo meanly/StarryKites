@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class XButton : MonoBehaviour
-{
-	PlayerController playercontrollerscript;
-	DialogueManager dialoguemanagerscript;
+public class XButton: MonoBehaviour {
+  PlayerController playercontrollerscript;
+  DialogueManager dialoguemanagerscript;
 
-    public void ButtonClick(){
+  public void ButtonClick() {
 
-		playercontrollerscript = FindObjectOfType<PlayerController>();
-		playercontrollerscript.isClicked = true;
-		playercontrollerscript.interact();
-    }
+    playercontrollerscript = FindObjectOfType < PlayerController > ();
+    playercontrollerscript.isClicked = true;
+    playercontrollerscript.interact();
+  }
 }
