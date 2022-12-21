@@ -6,6 +6,8 @@
 using UnityEngine;
 using System.Collections;
 
+// for 2d (not using atm)
+
 // Makes objects float up & down while gently spinning.
 public class SimpleFloater: MonoBehaviour {
   // User Inputs
