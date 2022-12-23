@@ -36,4 +36,6 @@ public class SimpleFloater: MonoBehaviour {
 
     transform.position = tempPos;
   }
+
+  ////////
 }
