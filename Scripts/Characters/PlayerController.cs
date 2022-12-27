@@ -6,8 +6,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
 {
-
-    const float offsetY = 0.3f;
     private Vector2 input;
     private Character character;
 
@@ -68,7 +66,6 @@ public class PlayerController : MonoBehaviour
             character.moveSpeed = 5f;
         } else {
             character.moveSpeed = 11f;
-            Debug.Log("The player is now running!"); 
         }
     }
 
@@ -87,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveOver()
     {
-       var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerableLayers);
+       var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, character.OffsetY), 0.2f, GameLayers.i.TriggerableLayers);
 
        foreach (var collider in colliders)
        {
@@ -126,5 +123,7 @@ public class PlayerController : MonoBehaviour
         IsRunning = false;
         character.Animator.IsRunning = false;
     }
+
+    public Character Character => character;
 
 } //class 
