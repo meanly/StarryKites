@@ -8,7 +8,7 @@ public class XButton: MonoBehaviour {
 
   public void ButtonClick() {
 
-    playercontrollerscript = FindObjectOfType < PlayerController > ();
+    playercontrollerscript = FindObjectOfType <PlayerController> ();
     playercontrollerscript.IsRunning = false;
     playercontrollerscript.isClicked = true;
     playercontrollerscript.interact();

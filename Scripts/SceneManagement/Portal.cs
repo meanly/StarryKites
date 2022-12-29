@@ -12,8 +12,10 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
 
     PlayerController player;
 
+
     public void OnPlayerTriggered(PlayerController player)
     {
+        player.IsRunning = false;
         this.player = player;
         Debug.Log("Player entered the Portal");
         StartCoroutine(SwitchScene());
@@ -39,12 +41,13 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
 
         //end
         yield return fader.FadeOut(0.5f);
+        
         GameController.Instance.PauseGame(false);
-
+    
         Destroy(gameObject);
     }
 
     public Transform SpawnPoint => spawnPoint;
 }
 
-public enum DestinationIdentifier {A, B, C, D, E}
+public enum DestinationIdentifier {A, B, C, D, E,}
