@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if(isClicked == true)
         interact();
 
-        if(Input.GetKeyDown(KeyCode.Z)) //does nt work atm
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             interact();
         }

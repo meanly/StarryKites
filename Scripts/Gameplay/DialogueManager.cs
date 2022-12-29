@@ -32,6 +32,22 @@ public class DialogueManager : MonoBehaviour
 
     public void HandleUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Z) && !isTyping)
+        {
+            ++currentLine;
+            if (currentLine < dialogue.Lines.Count)
+            {
+                StartCoroutine(TypeDialogue(dialogue.Lines[currentLine]));
+            } else
+            {
+                currentLine = 0;
+                IsShowing = false;
+                dialogueBox.SetActive(false);
+                onDialogueFinished?.Invoke();
+                OnCloseDialogue?.Invoke();
+            }
+        }
+
         playercontrollerscript = FindObjectOfType<PlayerController>();
         if (playercontrollerscript.isClicked == true && !isTyping)
         {
