@@ -12,7 +12,5 @@ public class XButton: MonoBehaviour {
     playercontrollerscript.IsRunning = false;
     playercontrollerscript.isClicked = true;
     playercontrollerscript.interact();
-    playercontrollerscript.isClicked = false;
-    
   }
 }
