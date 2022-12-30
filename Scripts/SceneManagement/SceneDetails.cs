@@ -13,13 +13,29 @@ public class SceneDetails : MonoBehaviour
         if (collision.tag == "Player");
         {
             Debug.Log($"Entered {gameObject.name}");
+
             LoadScene();
+            GameController.Instance.SetCurrentScene(this);
 
             //load all connected scenes
             foreach (var scene in connectedScenes)
             {
                 scene.LoadScene();
             }
+
+            //unload the scenes
+            if(GameController.Instance.PrevScene != null)
+            {
+                var previouslyLoadedScenes = GameController.Instance.PrevScene.connectedScenes;
+                foreach (var scene in previouslyLoadedScenes)
+                {
+                    if (!connectedScenes.Contains(scene) && scene != this) //if connected and the current scene
+                    {
+                        scene.UnloadScene();
+                    }
+                }
+            }
+
         }
     }
 
@@ -29,6 +45,15 @@ public class SceneDetails : MonoBehaviour
         {
             SceneManager.LoadSceneAsync(gameObject.name, LoadSceneMode.Additive);
             IsLoaded = true;
+        }
+    }
+
+    public void UnloadScene()
+    {
+        if (IsLoaded)
+        {
+            SceneManager.UnloadSceneAsync(gameObject.name);
+            IsLoaded = false;
         }
     }
 }

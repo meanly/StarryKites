@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
 
     GameState stateBeforePause;
 
+    //unloading scenes
+    public SceneDetails CurrentScene { get; private set; }
+    public SceneDetails PrevScene { get; private set; }
+
     public static GameController Instance { get; private set; }
 
     private void Awake() {
@@ -66,5 +70,12 @@ public class GameController : MonoBehaviour
     {
         state = GameState.Cutscene;
         StartCoroutine(trainer.TriggerTrainer(playerController));
+    }
+
+    //unloading scenes
+    public void SetCurrentScene(SceneDetails currScene)
+    {
+        PrevScene = CurrentScene;
+        CurrentScene = currScene;
     }
 }
