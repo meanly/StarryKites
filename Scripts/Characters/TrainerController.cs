@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static CharacterAnimator;
 
-public class TrainerController : MonoBehaviour
+public class TrainerController : MonoBehaviour, ISavable
 {
     [SerializeField] Dialogue dialogue;
     [SerializeField] GameObject exclamation;
@@ -50,5 +50,16 @@ public class TrainerController : MonoBehaviour
             angle = 270f; //no f
 
         fov.transform.eulerAngles = new Vector3(0f, 0f, angle);
+    }
+
+    //save and restore
+    public object CaptureState()
+    {   
+        throw new System.NotImplementedException();
+    }
+
+    public void RestoreState(object state)
+    {
+        throw new System.NotImplementedException();
     }
 }
