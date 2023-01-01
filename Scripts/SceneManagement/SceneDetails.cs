@@ -28,7 +28,8 @@ public class SceneDetails : MonoBehaviour
             }
 
             //unload the scenes
-            if(GameController.Instance.PrevScene != null)
+            var prevScene = GameController.Instance.PrevScene;
+            if(prevScene != null)
             {
                 var previouslyLoadedScenes = GameController.Instance.PrevScene.connectedScenes;
                 foreach (var scene in previouslyLoadedScenes)
@@ -38,6 +39,9 @@ public class SceneDetails : MonoBehaviour
                         scene.UnloadScene();
                     }
                 }
+
+                if (!connectedScenes.Contains(prevScene))
+                    prevScene.UnloadScene();
             }
 
         }
@@ -73,7 +77,7 @@ public class SceneDetails : MonoBehaviour
     List<SavableEntity> GetSavableEntitiesInScene()
     {
         var currScene = SceneManager.GetSceneByName(gameObject.name);
-        var = savableEntities = FindObjectsOfType<SavableEntity>().Where(x => x.gameObject.scene == currScene).ToList();
+        var savableEntities = FindObjectsOfType<SavableEntity>().Where(x => x.gameObject.scene == currScene).ToList();
 
         return savableEntities;
     }
