@@ -47,11 +47,15 @@ public class SceneDetails : MonoBehaviour
     {
         if (!IsLoaded)
         {
-            SceneManager.LoadSceneAsync(gameObject.name, LoadSceneMode.Additive);
+            var operation = SceneManager.LoadSceneAsync(gameObject.name, LoadSceneMode.Additive);
             IsLoaded = true;
 
-            savableEntities = GetSavableEntitiesInScene();
-            SavingSystem.i.RestoreEntityStates(savableEntities);
+            operation.completed += (AsyncOperation op) =>
+            {
+                savableEntities = GetSavableEntitiesInScene();
+                SavingSystem.i.RestoreEntityStates(savableEntities);
+            };
+
         }
     }
 
