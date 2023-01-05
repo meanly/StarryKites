@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState {FreeRoam, Dialogue, Cutscene, Paused}
+public enum GameState {FreeRoam, Dialogue, Menu, Cutscene, Paused}
 
 public class GameController : MonoBehaviour
 {
@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 menuController.OpenMenu();
+                state = GameState.Menu;
             }
 
             if (Input.GetKeyDown(KeyCode.S))
@@ -84,6 +85,10 @@ public class GameController : MonoBehaviour
         else if (state == GameState.Dialogue)
         {
             DialogueManager.Instance.HandleUpdate();
+        }
+        else if (state == GameState.Menu)
+        {
+            menuController.HandleUpdate();
         }
     }
 
