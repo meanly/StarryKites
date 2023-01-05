@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject menu;
+    public void OpenMenu()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        menu.SetActive(true);
     }
 }
