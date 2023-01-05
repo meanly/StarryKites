@@ -7,7 +7,7 @@ using System.Linq;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menu;
-    
+
     //menu items 
     List<Text> menuItems;
     
@@ -15,15 +15,18 @@ public class MenuController : MonoBehaviour
     int selectedItem = 0;
 
     private void Awake() {
-        menuItems =- menu.GetComponentInChildren<Text>().ToList();
+        menuItems = menu.GetComponentsInChildren<Text>().ToList();
     }
     public void OpenMenu()
     {
         menu.SetActive(true);
+        UpdateItemSelection();
     }
 
     public void HandleUpdate()
     {
+        int prevSelection = selectedItem;
+        //controls for selection
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             ++selectedItem;
@@ -33,17 +36,21 @@ public class MenuController : MonoBehaviour
             --selectedItem;
         }
 
-        selectedItem = MathF.Clamp(selectedItem, 0, menuItems.Count - 1);
+        selectedItem = Mathf.Clamp(selectedItem, 0, menuItems.Count - 1);
+
+        if (prevSelection != selectedItem)
+        UpdateItemSelection();
 
     }
 
     void UpdateItemSelection()
     {
+        //update user selection into ui (changing colors)
         for (int i = 0; i < menuItems.Count; i++)
         {
             if (i == selectedItem)
             {
-                menuItems[i].color = ?;
+                menuItems[i].color = GlobalSettings.i.HighlightedColor;
             }
             else 
             {
