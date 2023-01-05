@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menu;
+
+    public event Action<int> onMenuSelected;
+    public event Action onBack;
 
     //menu items 
     List<Text> menuItems;
@@ -23,6 +27,11 @@ public class MenuController : MonoBehaviour
         UpdateItemSelection();
     }
 
+    public void CloseMenu()
+    {
+        menu.SetActive(false);
+    }
+
     public void HandleUpdate()
     {
         int prevSelection = selectedItem;
@@ -31,7 +40,7 @@ public class MenuController : MonoBehaviour
         {
             ++selectedItem;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             --selectedItem;
         }
@@ -40,6 +49,22 @@ public class MenuController : MonoBehaviour
 
         if (prevSelection != selectedItem)
         UpdateItemSelection();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            onMenuSelected?.Invoke(selectedItem);
+            CloseMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            onBack?.Invoke();
+            CloseMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            onBack?.Invoke();
+            CloseMenu();
+        }
 
     }
 

@@ -43,6 +43,13 @@ public class GameController : MonoBehaviour
             if (state == GameState.Dialogue)
             state = GameState.FreeRoam;
         };
+
+        menuController.onBack += () =>
+        {
+            state = GameState.FreeRoam;
+        };
+
+        menuController.onMenuSelected += OnMenuSelected;
     }
 
     public void PauseGame(bool pause)
@@ -71,15 +78,6 @@ public class GameController : MonoBehaviour
                 menuController.OpenMenu();
                 state = GameState.Menu;
             }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SavingSystem.i.Save("saveSlot1");
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                SavingSystem.i.Load("saveSlot1");
-            }
             
         }
         else if (state == GameState.Dialogue)
@@ -103,5 +101,32 @@ public class GameController : MonoBehaviour
     {
         PrevScene = CurrentScene;
         CurrentScene = currScene;
+    }
+
+    //actions for selections of menu
+    void OnMenuSelected(int selectedItem)
+    {
+        if (selectedItem == 0)
+        {
+            //continue
+        }
+        else if (selectedItem == 1)
+        {
+            //mainmenu
+        }
+        else if (selectedItem == 2)
+        {
+            //inventory
+        }
+        else if (selectedItem == 3)
+        {
+            SavingSystem.i.Save("saveSlot1");
+        }
+        else if (selectedItem == 4)
+        {
+            SavingSystem.i.Load("saveSlot1");
+        }
+
+        state = GameState.FreeRoam;
     }
 }
