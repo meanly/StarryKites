@@ -14,7 +14,7 @@ public class SceneDetails : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if (collision.tag == "Player");
+        if (collision.tag == "Player")
         {
             Debug.Log($"Entered {gameObject.name}");
 
@@ -29,9 +29,9 @@ public class SceneDetails : MonoBehaviour
 
             //unload the scenes
             var prevScene = GameController.Instance.PrevScene;
-            if(prevScene != null)
+            if (prevScene != null)
             {
-                var previouslyLoadedScenes = GameController.Instance.PrevScene.connectedScenes;
+                var previouslyLoadedScenes = prevScene.connectedScenes;
                 foreach (var scene in previouslyLoadedScenes)
                 {
                     if (!connectedScenes.Contains(scene) && scene != this) //if connected and the current scene
@@ -41,7 +41,9 @@ public class SceneDetails : MonoBehaviour
                 }
 
                 if (!connectedScenes.Contains(prevScene))
+                {
                     prevScene.UnloadScene();
+                }
             }
 
         }
@@ -66,7 +68,7 @@ public class SceneDetails : MonoBehaviour
     public void UnloadScene()
     {
         if (IsLoaded)
-        {
+        {  
             SavingSystem.i.CaptureEntityStates(savableEntities);
 
             SceneManager.UnloadSceneAsync(gameObject.name);

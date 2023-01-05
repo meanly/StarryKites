@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static CharacterAnimator;
 
-public class TrainerController : MonoBehaviour, ISavable
+public class TrainerController : MonoBehaviour
 {
     [SerializeField] Dialogue dialogue;
     [SerializeField] GameObject exclamation;
@@ -53,13 +53,4 @@ public class TrainerController : MonoBehaviour, ISavable
     }
 
     //save and restore
-    public object CaptureState()
-    {   
-        throw new System.NotImplementedException();
-    }
-
-    public void RestoreState(object state)
-    {
-        throw new System.NotImplementedException();
-    }
 }
