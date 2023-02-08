@@ -6,7 +6,6 @@ using System.Collections;
 
 public class DayNightCycle : MonoBehaviour
 {
-    //to do list
     public bool modifyAmbientLight = false;
 
     public bool debugIgnoreTime = false;

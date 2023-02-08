@@ -55,11 +55,6 @@ public class MenuController : MonoBehaviour
             onMenuSelected?.Invoke(selectedItem);
             CloseMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            onBack?.Invoke();
-            CloseMenu();
-        }
         else if (Input.GetKeyDown(KeyCode.X))
         {
             onBack?.Invoke();
@@ -70,7 +65,7 @@ public class MenuController : MonoBehaviour
 
     void UpdateItemSelection()
     {
-        //update user selection into ui (changing colors)
+        //update user selection into ui (changing colors) ss
         for (int i = 0; i < menuItems.Count; i++)
         {
             if (i == selectedItem)
